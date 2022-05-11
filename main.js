@@ -4,7 +4,7 @@ img3 = ""
 img4 = ""
 img5 = ""
 status1 = ""
-
+imgF=""
 function preload() {
     img1 = loadImage("playground.jpg")
     img2 = loadImage("bedroom.jpg")
@@ -37,7 +37,7 @@ function modelLoaded() {
     } else if (page == "index5.html") {
         img = img5
     }
-
+imgF=img
     objD.detect(img, gotResults)
 }
 
@@ -51,7 +51,7 @@ function gotResults(error, results) {
 }
 
 function draw() {
-    image(img1, 0, 0, 600, 500)
+    image(imgF, 0, 0, 500, 500)
     if (status1 != "") {
         for (i = 0; i < Objects.length; i++) {
             document.getElementById("status").innerHTML = "status : object detected"
@@ -63,54 +63,7 @@ function draw() {
             rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
         }
     }
-    image(img2, 0, 0, 500, 500)
-    if (status1 != "") {
-        for (i = 0; i < Objects.length; i++) {
-            document.getElementById("status").innerHTML = "status : object detected"
-            fill("red")
-            perc = floor(Objects[i].confidence * 100)
-            text(Objects[i].label + " " + perc + "%", Objects[i].x, Objects[i].y)
-            noFill()
-            stroke("red")
-            rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
-        }
-    }
-    image(img3, 0, 0, 500, 500)
-    if (status1 != "") {
-        for (i = 0; i < Objects.length; i++) {
-            document.getElementById("status").innerHTML = "status : object detected"
-            fill("red")
-            perc = floor(Objects[i].confidence * 100)
-            text(Objects[i].label + " " + perc + "%", Objects[i].x, Objects[i].y)
-            noFill()
-            stroke("red")
-            rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
-        }
-    }
-    image(img4, 0, 0, 500, 500)
-    if (status1 != "") {
-        for (i = 0; i < Objects.length; i++) {
-            document.getElementById("status").innerHTML = "status : object detected"
-            fill("red")
-            perc = floor(Objects[i].confidence * 100)
-            text(Objects[i].label + " " + perc + "%", Objects[i].x, Objects[i].y)
-            noFill()
-            stroke("red")
-            rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
-        }
-    }
-    image(img5, 0, 0, 500, 500)
-    if (status1 != "") {
-        for (i = 0; i < Objects.length; i++) {
-            document.getElementById("status").innerHTML = "status : object detected"
-            fill("red")
-            perc = floor(Objects[i].confidence * 100)
-            text(Objects[i].label + " " + perc + "%", Objects[i].x, Objects[i].y)
-            noFill()
-            stroke("red")
-            rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
-        }
-    }
+    
     /*
     text("dog", 45, 45)
     fill("red")
