@@ -4,7 +4,9 @@ img3 = ""
 img4 = ""
 img5 = ""
 status1 = ""
-imgF=""
+imgF = ""
+Objects = []
+
 function preload() {
     img1 = loadImage("playground.jpg")
     img2 = loadImage("bedroom.jpg")
@@ -23,6 +25,19 @@ function setup() {
 function modelLoaded() {
     console.log("model Loaded")
     status1 = true
+
+}
+
+function gotResults(error, results) {
+    if (error) {
+        console.error(error)
+    } else {
+        console.log(results)
+        Objects = results
+    }
+}
+
+function draw() {
     var path = window.location.pathname;
     var page = path.split("/").pop();
     console.log(page);
@@ -37,20 +52,8 @@ function modelLoaded() {
     } else if (page == "index5.html") {
         img = img5
     }
-imgF=img
+    imgF = img
     objD.detect(img, gotResults)
-}
-
-function gotResults(error, results) {
-    if (error) {
-        console.error(error)
-    } else {
-        console.log(results)
-        Objects = results
-    }
-}
-
-function draw() {
     image(imgF, 0, 0, 500, 500)
     if (status1 != "") {
         for (i = 0; i < Objects.length; i++) {
@@ -63,7 +66,7 @@ function draw() {
             rect(Objects[i].x - 30, Objects[i].y, Objects[i].width, Objects[i].height)
         }
     }
-    
+
     /*
     text("dog", 45, 45)
     fill("red")
